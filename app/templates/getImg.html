@@ -1,0 +1,80 @@
+{% extends 'base.html' %} {% block content %}
+<canvas id="camera-sensor"></canvas>
+<div id="getImg" class="box">
+  <h3 style="color: aliceblue">
+    사진 저장 버튼을 눌러 얼굴을 캡쳐하고, 업로드 버튼을 눌러 서버에 업로드
+    해주세요.
+  </h3>
+  <div id="camera">
+    <video id="camera-view" autoplay playsinline></video>
+    <br />
+    <button id="capture">사진 저장</button>
+    <button id="upLoad">업로드</button>
+  </div>
+
+  <button id="to_character" onclick="location.href='/register/character'">
+    캐릭터 만들기
+  </button>
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script>
+  const cameraSensor = document.querySelector("#camera-sensor");
+  const cameraView = document.querySelector("#camera-view");
+  const captureButton = document.querySelector("#capture");
+  const uploadButton = document.querySelector("#upLoad");
+  let constraints = { video: true, audio: false };
+
+  function cameraStart() {
+    navigator.mediaDevices
+      .getUserMedia(constraints)
+      .then(function (stream) {
+        cameraView.srcObject = stream;
+      })
+      .catch(function (error) {
+        console.error("카메라에 문제가 있습니다.", error);
+      });
+  }
+
+  function capture() {
+    var context = cameraSensor.getContext("2d");
+    cameraSensor.width = cameraView.clientWidth;
+    cameraSensor.height = cameraView.clientHeight;
+    context.drawImage(
+      cameraView,
+      0,
+      0,
+      cameraView.clientWidth,
+      cameraView.clientHeight
+    );
+  }
+
+  window.addEventListener("load", cameraStart, false);
+  captureButton.addEventListener("click", capture);
+
+  function uploadImage() {
+    let userLabel = document.querySelector("#register_id");
+    let user = userLabel.innerText;
+    const imgBase64 = cameraSensor.toDataURL("image/png", "image/octet-stream");
+    var imageData = imgBase64.split(",")[1];
+
+    const file = new Blob([imageData], { type: "image/png" });
+    const fileName = user + ".png";
+    var formData = new FormData();
+    formData.append("file", file, fileName);
+
+    $.ajax({
+      type: "POST",
+      url: "/upload",
+      cache: false,
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function (data) {
+        alert("사진이 저장되었습니다.");
+      },
+    });
+  }
+
+  uploadButton.addEventListener("click", uploadImage);
+</script>
+{% endblock %}

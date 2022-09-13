@@ -1,0 +1,20 @@
+{% extends 'base.html' %} {% block content %}
+<div id="new" class="box">
+  <form method="post" enctype="multipart/form-data">
+    {{form.hidden_tag()}} {{form.userNumber.label}}
+    {{form.userNumber(placeholder="학번")}}
+    <br />
+    {{form.password.label}} {{form.password(placeholder="비밀번호")}}
+    <br />
+    {{form.confirm_password.label}}
+    {{form.confirm_password(placeholder="비밀번호 확인")}}
+    <br />
+    {{form.name.label}} {{form.name(placeholder="이름")}}
+    <br />
+    {{form.email.label}} {{form.email(placeholder="이메일")}}
+    <br />
+    <br />
+    {{form.submit()}}
+  </form>
+</div>
+{% endblock %}

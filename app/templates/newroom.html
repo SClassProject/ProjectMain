@@ -1,0 +1,12 @@
+{% extends 'base.html' %} {% block content %}
+<div id="newroom" class="box">
+  <form method="post" enctype="multipart/form-data">
+    {{form.hidden_tag()}} {{form.className.label}}
+    {{form.className(placeholder="클래스 이름")}}
+    <br />
+    {{form.classpwd.label}} {{form.classpwd(placeholder="클래스 비밀번호")}}
+    <br />
+    {{form.submit()}}
+  </form>
+</div>
+{% endblock %}

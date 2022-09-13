@@ -1,0 +1,11 @@
+{% extends 'base.html' %} {% block content %}
+<div class="box">
+  <h1 id="roomInfo">
+    생성된 [{{roomName}}]의 번호는<br />
+    [{{roomNum}}]입니다.
+  </h1>
+  <button id="to_main" onclick="location.href='/main'">
+    메인으로 돌아가기
+  </button>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %} {% block content %}
+<div id="input_num" class="box">
+  <form method="post">
+    <label for="classNum">클래스 번호</label>
+    <input
+      type="text"
+      id="classNum"
+      name="classNum"
+      placeholder="클래스 번호"
+      required
+    />
+    <br />
+    <label for="classPw">클래스 비밀번호</label>
+    <input
+      type="text"
+      id="classPw"
+      name="classPw"
+      placeholder="클래스 비밀번호"
+      required
+    />
+    <br />
+    <input type="submit" id="button" value="접속하기" />
+  </form>
+</div>
+{% endblock %}

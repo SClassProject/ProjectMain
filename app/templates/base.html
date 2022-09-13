@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="ko">
+  {% include 'head.html' %}
+  <body>
+    <div id="appName">
+      <h1>S-Class</h1>
+    </div>
+    {%if session['login_user']%}
+    <div id="login_user">{{session['login_user']}}</div>
+    {%endif%} {% block content %} {% endblock %}
+  </body>
+</html>

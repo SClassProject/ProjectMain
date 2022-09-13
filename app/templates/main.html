@@ -1,0 +1,14 @@
+{% extends 'base.html' %} {% block content %}
+<div id="main" class="box">
+  <div id="create" class="main_box">
+    <h3 style="color: white">새로운 교실 만들기</h3>
+    <button onclick="location.href='/newroom'">create</button>
+  </div>
+  <br />
+  <br />
+  <div id="enter" class="main_box">
+    <h3 style="color: white">생성된 교실 들어가기</h3>
+    <button onclick="location.href='/enter'">enter</button>
+  </div>
+</div>
+{% endblock %}

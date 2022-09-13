@@ -1,0 +1,328 @@
+@font-face {
+  font-family: "DungGeunMo";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-image: url("../img/background.png");
+}
+
+#appName h1 {
+  margin: 2%;
+  font-family: "DungGeunMo";
+  font-size: 6em;
+  text-align: center;
+  color: #f1c164;
+  text-shadow: 3px 3px #4657459e;
+}
+
+#login_user {
+  text-align: center;
+  color: white;
+  position: fixed;
+  top: 5%;
+  right: 5%;
+  height: 5%;
+  width: 10%;
+  border: 1px;
+  border-color: whitesmoke;
+  background-color: rgb(30, 35, 88, 0.6);
+}
+
+.box:not(#newCharacter) {
+  position: fixed;
+  left: 35%;
+  top: 25%;
+  width: 30%;
+  height: 45%;
+  padding: 6px;
+  padding-top: 3%;
+  border: 3px dashed whitesmoke;
+  vertical-align: middle;
+  font-size: 15px;
+  text-align: center;
+  background-color: rgb(30, 35, 88, 0.6);
+}
+
+#newCharacter {
+  position: fixed;
+  left: 35%;
+  top: 25%;
+  width: 30%;
+  height: 45%;
+  border: 3px dashed whitesmoke;
+  vertical-align: middle;
+  font-size: 15px;
+  text-align: center;
+  background-color: rgb(30, 35, 88, 0.6);
+}
+
+#login form {
+  margin-top: 20%;
+  font-size: 20px;
+  color: aliceblue;
+}
+
+#newroom form {
+  margin-top: 20%;
+  font-size: 14px;
+}
+
+#input_num form {
+  margin-top: 20%;
+  font-size: 14px;
+}
+
+label:not(.user):not(#user_title) {
+  float: left;
+  margin-left: 5%;
+  padding-top: 5px;
+  width: 25%;
+  text-align: center;
+  color: aliceblue;
+}
+
+input:not(.list):not(.button):not(.userCheck):not(.group_button) {
+  right: 23%;
+  height: 30px;
+  width: 50%;
+  margin: 3px;
+  border: none;
+  border-radius: 3px;
+  background-color: aliceblue;
+}
+
+input::placeholder {
+  font-size: 15px;
+  color: rgb(122, 122, 122);
+}
+
+input:hover {
+  color: black;
+  background-color: rgb(217, 238, 250);
+  transition: background-color 0.3s ease-in-out;
+}
+
+#button {
+  width: fit-content;
+  font-size: 13px;
+  color: rgb(212, 214, 215);
+  border: 2px ridge black;
+  background-color: rgb(60, 69, 73);
+}
+
+#button:hover {
+  color: black;
+  background-color: rgb(208, 226, 236);
+  transition: background-color 0.3s ease-in-out;
+}
+
+a {
+  font-size: 10px;
+  color: ghostwhite;
+}
+
+a:hover {
+  color: #9baabc;
+}
+
+video {
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg); /* Safari and Chrome */
+  -moz-transform: rotateY(180deg); /* Firefox */
+}
+
+#camera-sensor {
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg); /* Safari and Chrome */
+  -moz-transform: rotateY(180deg); /* Firefox */
+}
+
+#getImg {
+  padding-top: 0%;
+}
+
+#camera {
+  margin: 0%;
+  padding: 0%;
+}
+
+#camera-view {
+  width: 65%;
+  /* height: 30%; */
+  top: 0%;
+}
+
+#roomInfo {
+  margin-top: 25%;
+  font-size: 20px;
+  color: ghostwhite;
+}
+
+#room_address {
+  position: fixed;
+  right: 5%;
+  top: 10%;
+  height: 5%;
+  width: 20%;
+  text-align: right;
+  color: white;
+}
+
+#chosen {
+  position: fixed;
+  right: 5%;
+  top: 17%;
+  height: 20%;
+  width: 15%;
+  text-align: center;
+  background-color: aliceblue;
+  color: black;
+}
+
+#chat {
+  position: fixed;
+  left: 2%;
+  width: 20%;
+  height: 90%;
+  top: 5%;
+  border: 2px inset white;
+  border-radius: 10px;
+  text-align: center;
+  vertical-align: middle;
+  background-color: aliceblue;
+}
+
+#room {
+  position: fixed;
+  left: 25%;
+  height: 100%;
+  width: 75%;
+  text-align: center;
+  vertical-align: middle;
+  z-index: -1;
+  color: aliceblue;
+}
+
+#screen_object {
+  position: fixed;
+  top: 5%;
+  left: 50%;
+  width: 25%;
+  height: 20%;
+}
+
+#screen {
+  width: 100%;
+  height: 50%;
+  background-color: whitesmoke;
+}
+
+#random_object {
+  position: fixed;
+  top: 40%;
+  right: 3%;
+  width: 10%;
+  height: 20%;
+}
+
+#random {
+  width: 50%;
+  height: 50%;
+  background-color: whitesmoke;
+  border-radius: 50px;
+}
+
+#group_object {
+  position: fixed;
+  top: 70%;
+  right: 3%;
+  width: 10%;
+  height: 20%;
+}
+
+#group {
+  width: 50%;
+  height: 50%;
+  background-color: whitesmoke;
+  border-radius: 50px;
+}
+
+#select_member {
+  position: fixed;
+  top: 35%;
+  right: 15%;
+  width: 10%;
+  height: 45%;
+  background-color: whitesmoke;
+  color: black;
+}
+
+#group_member {
+  position: fixed;
+  top: 85%;
+  right: 5%;
+  width: fit-content;
+  height: fit-content;
+  color: whitesmoke;
+}
+
+#group_button {
+  position: fixed;
+  top: 90%;
+  right: 5%;
+  width: fit-content;
+  height: fit-content;
+}
+
+.group_button {
+  display: inline;
+  width: fit-content;
+  height: fit-content;
+}
+
+#speak_to {
+  position: fixed;
+  top: 65%;
+  right: 7%;
+  color: whitesmoke;
+}
+
+input.userCheck {
+  zoom: 1.5;
+}
+
+label.user {
+  color: black;
+}
+
+.user {
+  height: 10px;
+}
+
+.button {
+  top: 90%;
+  width: 45%;
+}
+
+ul {
+  margin-top: 3px;
+}
+
+li {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+  background-color: aliceblue;
+  width: fit-content;
+}
+
+.hidden {
+  display: none;
+}
