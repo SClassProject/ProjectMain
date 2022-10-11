@@ -1,126 +1,49 @@
 <!DOCTYPE html>
 <html lang="ko">
   {% include 'head.html' %}
-  <body>
-    <div id="login_user">
-      {%if session['login_user']%} {{session['login_user']}} {%endif%}
-    </div>
-    <div id="room_address">클래스 번호: {{room_id}}
-      <br><a href="test://{{session['login_user']}}/{{room_id}}"> 프로그램 실행 </a>
-    </div>
-    <div id="chosen" class="hidden">
-      <p id="chosenUser"></p>
-      <input type="button" id="reChoose" value="다시뽑기" />
-      <input type="button" id="closeChoose" value="닫기" />
-    </div>
+    <body>    
+    <main class="container">
+        {% include 'center.html' %}
+        <div id="room__container">
+            <section id="members__container">
+                <div id="appName_room">
+                    <h1>S-Class</h1>
+                </div>
+            <div id="members__header">
+                <p>참여자 목록</p>
+                <strong id="members__count">0</strong>
+            </div>
 
-    <div id="chat">채팅창
-      <script src="../static/js/object.js"></script>
-    </div>
-    <div id="room">
-      <canvas width="2048" height="1152"></canvas>
-      <script src="../static/js/character.js"></script>
-    </div>
-    <div id="screen_object">
-      <div id="screen">화면</div>
-      <ul id="screen_list" class="hidden">
-        <li><input type="button" class="list" value="전체화면" /></li>
-        <li><input type="button" class="list" value="화면공유" /></li>
-      </ul>
-    </div>
-    <div id="random_object">
-      <div id="random">랜덤</div>
-      <ul id="random_list" class="hidden">
-        <li>
-          <input
-            id="random_button"
-            type="button"
-            class="list"
-            value="랜덤추첨"
-          />
-        </li>
-      </ul>
-    </div>
-    <div id="group_object">
-      <div id="group">소그룹</div>
-      <ul id="group_list" class="hidden">
-        <li>
-          <input
-            id="create_group"
-            type="button"
-            class="list"
-            value="소그룹 생성"
-          />
-        </li>
-      </ul>
-    </div>
-    <div id="select_member" class="hidden">
-      <label id="user_title">참가자 목록</label>
-      <br />
-      <div id="user_list" style="overflow: auto; width: 100%; height: 80%">
-        <!-- 유저 리스트에 이 형태로 들어옴
-          <p class="userP">
-            <input 
-              class="userCheck" 
-              id="이름" 
-              type="checkbox" 
-              value="이름">
-            <label class="user">이름</label>
-          </p>
-        -->
-      </div>
-      <br />
-      <input type="button" class="button" id="select" value="선택" />
-      <input type="button" class="button" id="closeUsers" value="취소" />
-    </div>
-    <div id="group_member" class="hidden"></div>
-    <div id="group_button" class="hidden">
-      <input
-        type="button"
-        class="group_button"
-        id="speak_all"
-        value="전체에 말하기"
-      />
-      <input
-        type="button"
-        class="group_button"
-        id="speak_group"
-        value="그룹에 말하기"
-      />
-      <input
-        type="button"
-        class="group_button"
-        id="leave_group"
-        value="그룹 나가기"
-      />
-    </div>
-    <div id="speak_to">마이크: 전체</div>
-    <script type="text/javascript" src="//code.jquery.com/jquery-1.4.2.min.js"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
-    <script type="text/javascript" charset="utf-8">
-      var socket;
-      $(document).ready(function(){
-        socket = io.connect('http://' + document.domain + ':' + location.port + '/room');
-        socket.on('connect', function() {
-          socket.emit('joined', {});
-        });
-        socket.on('message', function(data) {
-          socket.emit('text', {msg:data.data})
-        });
-        // socket.on('text', function(data) {
-        //   socket.emit('text', {msg:data})
-        // });
-      });
-      function leave_room() {
-        socket.emit('left', {}, function() {
-          socket.disconnect();
+            <div id="member__list">
+            </div>
 
-          // go back to the login page
-          window.location.href = "{{ url_for('bp.main') }}";
-        });
-      }
-  </script>
-  <!-- <textarea id="chat" cols="80" rows="20"></textarea><br><br> -->
-  <!-- {{ id }} <input id="text" size="80" placeholder="메시지를 입력해보세요!"><br><br> -->
-  </body>
+            </section>
+            <section id="stream__container">
+                <div id="sample__map"> <!-- 맵 이미지 -->
+                    <div id="stream__box"></div> <!-- 스트림 박스 (분홍 박스) -->
+                </div>
+
+                <div id="streams__container">
+                    <!--div class="video__container" id="user-container-1">
+                    </div-->
+                </div>
+            </section>
+            
+            
+
+            <section id="messages__container">
+
+                <div id="messages">
+                    <div class="message__wrapper">
+                    </div>
+                </div>
+
+                <form id="message__form">
+                    <input type="text" name="message" placeholder="Send a message..." />
+                </form>
+
+            </section>
+        </div>
+    </main>
+</body>
 </html>

@@ -1,0 +1,89 @@
+<div id="login_user">
+  {%if session['login_user']%} {{session['login_user']}} {%endif%}
+</div>
+<div id="room_address">클래스 번호: {{room_id}}
+  <br><a href="test://{{session['login_user']}}/{{room_id}}"> 프로그램 실행 </a>
+</div>
+<div id="chosen" class="hidden">
+  <p id="chosenUser"></p>
+  <input type="button" id="reChoose" value="다시뽑기" />
+  <input type="button" id="closeChoose" value="닫기" />
+</div>
+<div id="room">
+  <canvas width="2048" height="1152"></canvas>
+  <script src="../static/js/character.js"></script>
+</div>
+<div id="screen_object">
+  <div id="screen">화면</div>
+  <ul id="screen_list" class="hidden">
+    <li><input type="button" class="list" value="전체화면" /></li>
+    <li><input type="button" class="list" value="화면공유" /></li>
+  </ul>
+</div>
+<div id="random_object">
+  <div id="random">랜덤</div>
+  <ul id="random_list" class="hidden">
+    <li>
+      <input
+        id="random_button"
+        type="button"
+        class="list"
+        value="랜덤추첨"
+      />
+    </li>
+  </ul>
+</div>
+<div id="group_object">
+  <div id="group">소그룹</div>
+  <ul id="group_list" class="hidden">
+    <li>
+      <input
+        id="create_group"
+        type="button"
+        class="list"
+        value="소그룹 생성"
+      />
+    </li>
+  </ul>
+</div>
+<div id="select_member" class="hidden">
+  <label id="user_title">참가자 목록</label>
+  <br />
+  <div id="user_list" style="overflow: auto; width: 100%; height: 80%">
+    <!-- 유저 리스트에 이 형태로 들어옴
+      <p class="userP">
+        <input 
+          class="userCheck" 
+          id="이름" 
+          type="checkbox" 
+          value="이름">
+        <label class="user">이름</label>
+      </p>
+    -->
+  </div>
+  <br />
+  <input type="button" class="button" id="select" value="선택" />
+  <input type="button" class="button" id="closeUsers" value="취소" />
+</div>
+<div id="group_member" class="hidden"></div>
+<div id="group_button" class="hidden">
+  <input
+    type="button"
+    class="group_button"
+    id="speak_all"
+    value="전체에 말하기"
+  />
+  <input
+    type="button"
+    class="group_button"
+    id="speak_group"
+    value="그룹에 말하기"
+  />
+  <input
+    type="button"
+    class="group_button"
+    id="leave_group"
+    value="그룹 나가기"
+  />
+</div>
+<div id="speak_to">마이크: 전체</div>
