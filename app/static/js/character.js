@@ -1,7 +1,7 @@
 // 이미지 로딩
 
 let img = new Image();
-img.src = "../static/img/phantom.png";
+img.src = "../static/img/1871054.png";
 img.onload = function () {
   window.requestAnimationFrame(gameLoop);
 };
