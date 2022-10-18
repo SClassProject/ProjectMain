@@ -1,18 +1,15 @@
 <div id="login_user">
-  {%if session['login_user']%} {{session['login_user']}} {%endif%}
+  {%if session['u_id']%} {{session['u_id']}} {%endif%}
 </div>
 <div id="room_address">클래스 번호: {{room_id}}
-  <br><a href="test://{{session['login_user']}}/{{room_id}}"> 프로그램 실행 </a>
+  <br><a href="test://{{session['u_id']}}/{{room_id}}"> 프로그램 실행 </a>
 </div>
 <div id="chosen" class="hidden">
   <p id="chosenUser"></p>
   <input type="button" id="reChoose" value="다시뽑기" />
   <input type="button" id="closeChoose" value="닫기" />
 </div>
-<!-- <div id="room">
-  <canvas width="2048" height="1152"></canvas>
-  <script src="../static/js/character.js"></script>
-</div> -->
+
 <!-- <div id="screen_object">
   <div id="screen">화면</div>
   <ul id="screen_list" class="hidden">
@@ -21,7 +18,7 @@
   </ul>
 </div> -->
 <div id="random_object">
-  <div id="random">랜덤</div>
+  <div id="random"></div>
   <ul id="random_list" class="hidden">
     <li>
       <input
@@ -87,5 +84,5 @@
   />
 </div>
 <div id="speak_to">마이크: 전체</div> -->
-<script src="../static/js/character.js"></script>
+
 <script src="../static/js/object.js"></script>

@@ -192,6 +192,7 @@ body{
   background-image: url("../img/map_t.png");
   /* background-repeat: no-repeat; */
   background-size: contain;
+  /* z-index: -1; */
 } /* 맵 */
 
 #stream__box {

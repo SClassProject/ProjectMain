@@ -1,14 +1,14 @@
 // 이미지 로딩
 
-let img = new Image();
-img.src = "../static/img/1871054.png";
-img.onload = function () {
+let characterImg = new Image();
+characterImg.src = "../static/img/1871054.png";
+characterImg.onload = function () {
   window.requestAnimationFrame(gameLoop);
 };
 
 // 캔버스 설정
 
-let canvas = document.querySelector("canvas");
+let canvas = document.querySelector("#canvas");
 let ctx = canvas.getContext("2d");
 
 // 캐릭터 스케일 설정
@@ -20,7 +20,7 @@ const HEIGHT = 128;
 
 function drawFrame(frameX, frameY, canvasX, canvasY) {
   ctx.drawImage(
-    img,
+    characterImg,
     frameX * WIDTH,
     frameY * HEIGHT,
     WIDTH,

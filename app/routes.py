@@ -15,7 +15,7 @@ def login():
 
         conn = mysql.connect()
         cursor = conn.cursor()
-        sql = "SELECT u_id FROM user WHERE u_id = %s AND u_password = %s"
+        sql = "SELECT u_id, u_name FROM user WHERE u_id = %s AND u_password = %s"
         value = (id, pw)
         cursor.execute("set names utf8")
         cursor.execute(sql, value)
@@ -24,11 +24,12 @@ def login():
         cursor.close()
         conn.close()
 
-        for row in data:
-            data = row[0]
-
         if data:
-            session['login_user'] = id
+            u_id = data[0][0]
+            u_name = data[0][1]
+            
+            session['u_id'] = u_id
+            session['u_name'] = u_name
             return redirect(url_for('bp.main'))
         else:
             error = 'invalid input data detected !'
