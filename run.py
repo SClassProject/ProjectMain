@@ -2,7 +2,7 @@ from app import create_app, socketio
 from database import mysql
 from app.routes import bp
 from flask_socketio import emit
-import ssl
+# import ssl
 
 app = create_app(debug=True)
 
@@ -16,5 +16,4 @@ mysql.init_app(app)
 app.register_blueprint(bp)
 
 if __name__ == '__main__':
-    # socketio.run(app, host='0.0.0.0', port=443, debug=True, ssl_context='adhoc')
-    app.run(host='0.0.0.0', port=443, debug=True, ssl_context='adhoc')
+    socketio.run(app, host='0.0.0.0', port=443, debug=True, certfile='cert.pem', keyfile='key.pem')
