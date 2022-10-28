@@ -66,3 +66,24 @@ let hideDisplayFrame = () => {
 } // 클릭하면 내려가게 하는 거
 
 displayFrame.addEventListener('click', hideDisplayFrame)
+
+
+//test self camera
+
+const selfCamera = document.querySelector("#self_cam");
+
+function cameraStart() {
+  navigator.mediaDevices
+    .getUserMedia({ video: true, audio: false })
+    .then(function (stream) {
+      selfCamera.srcObject = stream;
+    })
+    .catch(function (error) {
+      console.error("카메라에 문제가 있습니다.", error);
+    });
+}
+
+window.addEventListener("load", cameraStart, false);
+
+
+setTimeout(()=>alert("자리비움!"), 15000); //시연할때 시간 맞추기

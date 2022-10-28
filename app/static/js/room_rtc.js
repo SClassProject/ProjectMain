@@ -14,7 +14,9 @@ if(!roomId) {
     roomId = 'main'
 }
 
-let displayName = uid; // ★이쪽 우선 임시로! 이름 받아와서 이쪽에 저장해줘야 함
+const user_name = document.querySelector("#login_user_name");
+let displayName = user_name.innerText; // ★이쪽 우선 임시로! 이름 받아와서 이쪽에 저장해줘야 함
+console.log(displayName);
 
 let token = null;
 let client;
@@ -32,7 +34,7 @@ let joinRoomInit = async () => {
     rtmClient = await AgoraRTM.createInstance(APP_ID)
     await rtmClient.login({uid, token})
 
-    // ★await rtmClient.addOrUpdateLocalUserAttributes({'name':displayName}) // 참가자 리스트 이름으로 나오게 하는 것!
+    await rtmClient.addOrUpdateLocalUserAttributes({'name':displayName}) // 참가자 리스트 이름으로 나오게 하는 것!
 
     channel = await rtmClient.createChannel(roomId)
     await channel.join()

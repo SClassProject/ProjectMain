@@ -1,8 +1,11 @@
 // 이미지 로딩
 
-let characterImg = new Image();
-characterImg.src = "../static/img/1871054.png";
-characterImg.onload = function () {
+let userLabel = document.querySelector("#login_user_id");
+let user = userLabel.innerText;
+
+let img = new Image();
+img.src = `../static/img/phantoms/${user}.png`;
+img.onload = function () {
   window.requestAnimationFrame(gameLoop);
 };
 
@@ -11,16 +14,26 @@ characterImg.onload = function () {
 let canvas = document.querySelector("#canvas");
 let ctx = canvas.getContext("2d");
 
+// let canvasFalse = document.querySelector("#canvasFalse");
+// let ctxFalse = canvas.getContext("2d");
+
 // 캐릭터 스케일 설정
 
 const WIDTH = 128;
 const HEIGHT = 128;
 
+// let imgFalse = new Image();
+// img.src = `../static/img/phantoms/1871053.png`
+// img.onload = function () {
+//   ctxFalse.globalAlpha = "1.0";
+//   ctxFalse.drawImage(imgFalse, 400,780,128,128)
+// }
+
 // 프레임 그리기
 
 function drawFrame(frameX, frameY, canvasX, canvasY) {
   ctx.drawImage(
-    characterImg,
+    img,
     frameX * WIDTH,
     frameY * HEIGHT,
     WIDTH,
@@ -31,6 +44,9 @@ function drawFrame(frameX, frameY, canvasX, canvasY) {
     HEIGHT
   );
 }
+
+
+
 
 const FACING_ORIGINAL = 0;
 const FACING_LEFT = 1;
@@ -62,9 +78,9 @@ function keyUpListener(event) {
 
 // gameLoop 함수 ⓑ
 
-const MOVEMENT_SPEED = 3; // 움직이는 속도
-let positionX = 0;
-let positionY = 0;
+const MOVEMENT_SPEED = 7; // 움직이는 속도
+let positionX = 780;
+let positionY = 600;
 
 function gameLoop() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);

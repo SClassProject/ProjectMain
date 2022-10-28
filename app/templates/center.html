@@ -1,8 +1,15 @@
+<div id="info_container">
 <div id="login_user">
+  <div id="login_user_id">
   {%if session['u_id']%} {{session['u_id']}} {%endif%}
+</div>
+  <div id="login_user_name">
+  {%if session['u_name']%} {{session['u_name']}} {%endif%}
+</div>
 </div>
 <div id="room_address">클래스 번호: {{room_id}}
   <br><a href="test://{{session['u_id']}}/{{room_id}}"> 프로그램 실행 </a>
+</div>
 </div>
 <div id="chosen" class="hidden">
   <p id="chosenUser"></p>
@@ -85,4 +92,3 @@
 </div>
 <div id="speak_to">마이크: 전체</div> -->
 
-<script src="../static/js/object.js"></script>

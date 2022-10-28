@@ -8,7 +8,8 @@ bp = Blueprint('bp', __name__)
 @bp.route('/', methods=["GET","POST"])
 def login():
     error = None
-    session.pop('login_user', None)
+    session.pop('register_id',None)
+    session.pop('u_id', None)
     if request.method == 'POST':
         id = request.form['id']
         pw = request.form['pw']
@@ -56,7 +57,8 @@ def register():
 
         if not data:
             conn.commit()
-            return render_template("getInfo.html")
+            session['register_id'] = request.form['userNumber']
+            return render_template("getImg.html")
         else:
             conn.rollback()
             return render_template("register.html", form=form)
@@ -78,6 +80,18 @@ def upload():
         session.pop('register_id',None)
         return str(f)
     return 0
+
+@bp.route('/uploadPhantom', methods=["GET","POST"])
+def uploadPhantom():
+    if request.method == 'POST':
+        f = request.files['file']
+
+        fileName = f.filename
+        imageData = base64.b64decode(f.read().decode('utf-8')+'='*(4-len(f.read())%4))
+        with open('static/img/phantoms/'+ fileName, 'wb') as file:  
+            file.write(imageData)
+        return str(f)
+    return "0"
 
 @bp.route('/getInfo')
 def getInfo():
@@ -103,7 +117,7 @@ def main():
 def newroom():
     form = roomRegistration()
     if form.validate_on_submit():
-        id = session['login_user']
+        id = session['u_id']
         name = request.form['className']
         pw = request.form['classpwd']
 
@@ -184,10 +198,14 @@ def enter():
 
 @bp.route('/<int:room_id>',methods=["GET","POST"])
 def room(room_id):
-    id = session['login_user']
+    id = session['u_id']
     id = str(id)
     room_id = str(room_id)
     session['id'] = id
     session['room_id'] = room_id
     return render_template("room.html", room_id=room_id, id=id)
+
+@bp.route('/move')
+def move():
+    return render_template("move.html")
 

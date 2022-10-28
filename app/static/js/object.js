@@ -58,7 +58,8 @@ const chosenLabel = document.querySelector("#chosenUser");
 const replay = document.querySelector("#reChoose");
 const closeChoose = document.querySelector("#closeChoose");
 const randomButton = document.querySelector("#random_button");
-let users = ["이수빈", "장현아", "전지은", "최예진"]; // 접속중인 유저 리스트가 들어가도록 수정
+
+// let users = ["이수빈", "장현아", "전지은", "최예진"]; // 접속중인 유저 리스트가 들어가도록 수정
 var randomRunTime = 20;
 
 function startTime() {
@@ -78,7 +79,10 @@ function startTime() {
 function randomUser(event) {
   // 유저 추첨해서 창 띄워주는 함수
   event.preventDefault();
-  let chosenUser = users[Math.floor(Math.random() * users.length)];
+  let users = document.querySelectorAll(".member_name");
+  console.log(users);
+  let chosenUser = users[Math.floor(Math.random() * users.length)].innerText;
+
   chosenLabel.innerText = `>> ${chosenUser} <<`;
   randomRunTime = 20;
   closeChoose.value = `닫기 ( ${randomRunTime} s)`;
@@ -89,11 +93,13 @@ function randomUser(event) {
 function reChoose(event) {
   // 띄워진 창에서 유저 재추첨하는 함수
   event.preventDefault();
+  let users = document.querySelectorAll(".member_name");
+  console.log(users);
   randomRunTime = 20;
   closeChoose.value = `닫기 ( ${randomRunTime} s)`;
-  let chosenUser = users[Math.floor(Math.random() * users.length)];
+  let chosenUser = users[Math.floor(Math.random() * users.length)].innerText;
   while (chosenLabel.innerText == `>> ${chosenUser} <<`) {
-    chosenUser = users[Math.floor(Math.random() * users.length)];
+    chosenUser = users[Math.floor(Math.random() * users.length)].innerText;
   }
   chosenLabel.innerText = `>> ${chosenUser} <<`;
 }
