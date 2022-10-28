@@ -203,7 +203,7 @@ body{
   position: fixed;
   /* left: 23%; */
   height: 100%;
-  /* overflow-y: auto; */
+  overflow-y: auto;
   z-index: -1;
 
 }
@@ -231,7 +231,7 @@ body{
   background-color: #1396ce;
   background-size: contain;
   position: fixed;
-  width: 700px;
+  width: 28.2%;
   height: 29%;
   left: 51%;
   margin-left: -350px;
