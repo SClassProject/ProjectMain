@@ -78,9 +78,9 @@ function keyUpListener(event) {
 
 // gameLoop 함수 ⓑ
 
-const MOVEMENT_SPEED = 7; // 움직이는 속도
+const MOVEMENT_SPEED = 10; // 움직이는 속도
 let positionX = 780;
-let positionY = 600;
+let positionY = 700;
 
 function gameLoop() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);

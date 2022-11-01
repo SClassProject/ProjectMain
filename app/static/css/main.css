@@ -282,7 +282,7 @@ video {
 }
 
 #random_object {
-  background-image: url("../img/random.png");
+  background-image: url("../img/random_o.png");
   position: fixed;
   top: 70%;
   right: 20%;

@@ -6,7 +6,7 @@ class RegistrationForm(FlaskForm):
     userNumber = StringField("학번", validators=[DataRequired(), Length(min=5,max=10)])
     password = PasswordField("비밀번호", validators=[DataRequired(), Length(min=4, max=20)])
     confirm_password = PasswordField("비밀번호 확인", validators=[DataRequired(), EqualTo("password")])
-    name = StringField("이름", validators=[DataRequired(), Length(min=1,max=10)])
+    name = StringField("이름", validators=[DataRequired(), Length(min=1,max=20)])
     email = StringField("이메일",validators=[DataRequired(),Email()])
     submit = SubmitField("가입")
 

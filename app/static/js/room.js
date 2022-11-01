@@ -86,4 +86,4 @@ function cameraStart() {
 window.addEventListener("load", cameraStart, false);
 
 
-setTimeout(()=>alert("자리비움!"), 15000); //시연할때 시간 맞추기
+setTimeout(()=>alert("자리비움!"), 25000); //시연할때 시간 맞추기
