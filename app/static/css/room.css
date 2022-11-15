@@ -4,11 +4,11 @@
   position: relative;
 }
 
-body{
+body {
   margin: 0%;
 }
 
-#info_container{
+#info_container {
   position: fixed;
   left: 55%;
 }
@@ -19,7 +19,7 @@ body{
   gap: 3rem;
 }
 
-#appName_room{
+#appName_room {
   font-family: "DungGeunMo";
   font-size: 3em;
   text-align: center;
@@ -27,16 +27,18 @@ body{
   text-shadow: 3px 3px #4657459e;
 }
 
-#canvas, #canvasFalse{
+#canvas,
+#canvasFalse {
   position: absolute;
   top: 0;
   left: 0;
 }
 
-#test_character{ /*1871053.png*/
+#test_character {
+  /*1871053.png*/
   position: fixed;
-  top:65%;
-  left:30%;
+  top: 65%;
+  left: 30%;
 }
 
 #members__container {
@@ -54,12 +56,12 @@ body{
   align-items: center;
   /* padding: 0 2rem; */
   font-size: 25px;
-  text-align:left;
+  text-align: left;
   background-color: #323143;
   width: 100%;
 }
 
-#members__header p{
+#members__header p {
   margin-left: 2rem;
 }
 
@@ -100,7 +102,23 @@ body{
   background-color: #2aca3e;
 }
 
-.member_name{
+.red__icon {
+  display: block;
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  background-color: #ca2a2a;
+}
+
+.hand__icon {
+  display: block;
+  height: 16px;
+  width: 16px;
+  /* border-radius: 50%; */
+  background-image: url("../img/hand.png");
+}
+
+.member_name {
   font-size: 20px;
   line-height: 0;
 }
@@ -144,24 +162,21 @@ body{
   color: #ede0e0;
 }
 
-.message__body__bot{
+.message__body__bot {
   padding: 0 20px;
   max-width: 900px;
   color: #bdbdbd;
 }
 
-
 .message__author {
   font-size: 20px;
   margin-right: 10px;
-  color: #2aca3e!important;
-
+  color: #2aca3e !important;
 }
 
 .message__author__bot {
   margin-right: 10px;
-  color: #a52aca!important;
-
+  color: #a52aca !important;
 }
 
 .message__text {
@@ -205,15 +220,14 @@ body{
   height: 100%;
   overflow-y: auto;
   z-index: -1;
-
 }
 
 #self_cam {
   position: fixed;
   width: 320px;
   height: 300px;
-  left:2%;
-  top:70%;
+  left: 2%;
+  top: 70%;
   border-radius: 20px;
   z-index: 999;
 }
@@ -239,16 +253,14 @@ body{
   transform: rotateY(180deg);
   -webkit-transform: rotateY(180deg);
   -moz-transform: rotateY(180deg);
-  
 } /* 스트림 박스 (화면공유 띄우는 용) */
 
 #stream__box .video__container {
   border: 2px solid #000;
   border-radius: 0;
-  height: 100%!important;
-  width: 100%!important;
+  height: 100% !important;
+  width: 100% !important;
 } /* 화면 클릭 시 전체화면용 */
-
 
 #stream__box video {
   border-radius: 0;
@@ -394,4 +406,3 @@ body{
 .stream__actions button:hover {
   background-color: #845695;
 }
-
