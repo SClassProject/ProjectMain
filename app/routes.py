@@ -2,6 +2,7 @@ import base64
 from flask import session, redirect, url_for, render_template, request, Blueprint
 from forms import RegistrationForm, roomRegistration, loginRegistration
 from database import mysql
+import json
 
 bp = Blueprint('bp', __name__)
 
@@ -198,14 +199,43 @@ def enter():
 
 @bp.route('/<int:room_id>',methods=["GET","POST"])
 def room(room_id):
-    id = session['u_id']
-    id = str(id)
+    u_id = session['u_id']
+    u_id = str(u_id)
     room_id = str(room_id)
-    session['id'] = id
+    # session['id'] = id
     session['room_id'] = room_id
-    return render_template("room.html", room_id=room_id, id=id)
+    return render_template("room.html", room_id=room_id, u_id=u_id)
 
 @bp.route('/move')
 def move():
     return render_template("move.html")
 
+@bp.route('/quiz_stu')
+def quiz_stu():
+    return render_template("quiz_stu.html")
+
+@bp.route('/quiz_host')
+def quiz_host():
+    return render_template("quiz_host.html")
+
+@bp.route('/save_quiz',methods=["GET","POST"])
+def save_quiz():
+    if request.method == 'POST':
+        # data = request.form
+        data = request.get_json()
+        print(data[0])
+
+        with open('./app/static/quiz/'+session["room_id"]+'.json', "w") as file:
+            json.dump(data, file)
+        return str(data)
+    return "0"
+
+# if request.method == 'POST':
+#         f = request.files['file']
+
+#         fileName = f.filename
+#         imageData = base64.b64decode(f.read().decode('utf-8')+'='*(4-len(f.read())%4))
+#         with open('static/img/phantoms/'+ fileName, 'wb') as file:  
+#             file.write(imageData)
+#         return str(f)
+#     return "0"

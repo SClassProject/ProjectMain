@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+body{
+    background:  #a1c0df;
+}
+
+.btn-save,
+.btn-add,
+.btn-delete{
+        font-size: 15px;
+        font-weight: 500;
+        color: #007bff;
+        padding: 7px 15px;
+        outline: none;
+        border: none;
+        border-radius: 5px;
+        background: #fff;
+        cursor: pointer;
+        justify-content: center;
+}
+
+.time,
+.question,
+.option1,
+.option2,
+.option3,
+.option4,
+.answer{
+    background: aliceblue;
+    border: 1px solid #84c5fe;
+    border-radius: 5px;
+    padding: 8px 20px;
+    font-size: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+label{
+    height: 15px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+title{
+    align-items: center;
+    font-size: 35px;
+    justify-content: center;
+    align-items: center;
+}

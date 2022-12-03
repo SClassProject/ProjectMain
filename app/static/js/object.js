@@ -4,6 +4,8 @@ const randomObject = document.querySelector("#random");
 const randomList = document.querySelector("#random_list");
 // const groupObject = document.querySelector("#group");
 // const groupList = document.querySelector("#group_list");
+const quizObject = document.querySelector("#quiz");
+const quizList = document.querySelector("#quiz_list");
 
 const HIDDEN_CLASSNAME = "hidden";
 
@@ -22,6 +24,11 @@ function onMouseGroup(event) {
   groupList.classList.remove(HIDDEN_CLASSNAME);
 }
 
+function onMouseQuiz(event) {
+  event.preventDefault();
+  quizList.classList.remove(HIDDEN_CLASSNAME);
+}
+
 function outMouseScreen(event) {
   event.preventDefault();
   screenList.classList.add(HIDDEN_CLASSNAME);
@@ -37,10 +44,17 @@ function outMouseGroup(event) {
   groupList.classList.add(HIDDEN_CLASSNAME);
 }
 
+function outMouseQuiz(event) {
+  event.preventDefault();
+  quizList.classList.add(HIDDEN_CLASSNAME);
+}
+
 // screenObject.addEventListener("mouseover", onMouseScreen);
 // screenList.addEventListener("mouseover", onMouseScreen);
 randomObject.addEventListener("mouseover", onMouseRandom);
 randomList.addEventListener("mouseover", onMouseRandom);
+quizObject.addEventListener("mouseover", onMouseQuiz);
+quizList.addEventListener("mouseover", onMouseQuiz);
 // groupObject.addEventListener("mouseover", onMouseGroup);
 // groupList.addEventListener("mouseover", onMouseGroup);
 
@@ -48,6 +62,7 @@ randomList.addEventListener("mouseover", onMouseRandom);
 // screenList.addEventListener("mouseout", outMouseScreen);
 // randomObject.addEventListener("mouseout",outMouseRandom);
 randomList.addEventListener("mouseout", outMouseRandom);
+quizList.addEventListener("mouseout", outMouseQuiz);
 // groupObject.addEventListener("mouseout",outMouseGroup)
 // groupList.addEventListener("mouseout", outMouseGroup);
 

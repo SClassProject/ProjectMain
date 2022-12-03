@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>only host page</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="../static/css/quiz_host.css">
+</head>
+<body>
+    <form class="formid">
+
+        <h2>Make Quiz!</h2>
+        <button type="button" class="btn-save" onclick="saveData();">SAVE</button>
+        <button type="button" class="btn-add" onclick="addQuestion();">ADD</button>
+        <button type="button" class="btn-delete" onclick="deleteQuestion();">DELETE</button><br><br>
+
+        <label>setting time</label><br>
+        <input type="number" class="time" id="time"><br><br>
+    
+        <quiz class='q'>
+            <div class="input-group">
+            
+                <label>question</label>
+                <qu><input type="text" class="question" id="question"><br></qu>
+                <label>option1</label>
+                <op1><input type="text" class="option1" id="option1"><br></op1>
+                <label>option2</label>
+                <op2><input type="text" class="option2" id="option2"><br></op2>
+                <label>option3</label>
+                <op3><input type="text" class="option3" id="option3"><br></op3>
+                <label>option4</label>
+                <op4><input type="text" class="option4" id="option4"><br></op4>
+                <label>answer</label>
+                <op5><input type="text" class="answer" id="answer"><br></op5>
+                <br>
+            
+            </div>
+        </quiz>
+    </form>
+    <!-- 데이터확인용 나중에 삭제 -->
+    <div id="showJson"></div>
+    <div id="Q_num"></div>
+    <div id="TIME"></div>
+
+<!--    
+        //2)이후 js파일로 어떻게 넘길것인가 고민.(json배열을 바로 script로 넘기는거?)
+           //-여기까지 하면 script.js로 넘어가서 코드 수정필요.
+           //json파일로 여기서 써서 script에서 json파일을 불러오기?
+        //3) 빈칸인 항목은 데이터에 저장 안하기(개수를 0으로 치기?) 코드.
+        export {q_list} -->
+    <script src="../static/js/quiz_host_F.js"></script>
+</body>
+</html>

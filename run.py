@@ -16,4 +16,4 @@ mysql.init_app(app)
 app.register_blueprint(bp)
 
 if __name__ == '__main__':
-    socketio.run(app, host='0.0.0.0', port=443, debug=False, certfile='cert.pem', keyfile='key.pem')
+    socketio.run(app, host='0.0.0.0', port=443, debug=True, certfile='cert.pem', keyfile='key.pem')
