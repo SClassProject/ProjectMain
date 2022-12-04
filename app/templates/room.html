@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
   {% include 'head.html' %}
-    <body>    
+    <body onload="initGame();">   
     <main class="container">
         {% include 'center.html' %}
         <div id="room__container">
@@ -20,12 +20,12 @@
             </section>
 
             <video id="self_cam" autoplay playsinline></video>
-            <img id="test_character" src="../static/img/phantoms/1871053.png" width="128" height="512" style="clip: rect( 0px, 128px, 128px, 0px )">
+            <!-- <img id="test_character" src="../static/img/phantoms/1871053.png" width="128" height="512" style="clip: rect( 0px, 128px, 128px, 0px )"> -->
 
             <section id="stream__container">
     
                 <div id="sample__map"> <!-- 맵 이미지 -->
-                    <canvas id ="canvas" width="1152" height="1152" style="left: 17%;"></canvas>
+                    <canvas id ="canvas" width="1800" height="1152" style="left: 17%;"></canvas>
                     <!-- <canvas id ="canvasFalse" width="1152" height="1152" style="left: 17%;"></canvas> -->
                     <div id="stream__box"></div> <!-- 스트림 박스 (분홍 박스) -->
                 </div>
@@ -76,18 +76,8 @@
     <script type="text/javascript" src="../static/js/room.js"></script>
     <script type="text/javascript" src="../static/js/room_rtm.js"></script>
     <script type="text/javascript" src="../static/js/room_rtc.js"></script>
-    <script src="../static/js/character.js"></script>
+    <!-- <script src="../static/js/character.js"></script> -->
     <script src="../static/js/object.js"></script>
     <script src="../static/js/recognition.js"></script>
-    <!-- <script type="text/javascript" charset="utf-8">
-        var socket;
-            $(document).ready(function(){
-                socket = io.connect('https://192.168.71.132/', namespaces='/room');
-                socket.on('connect', function() {
-                    socket.emit('joined', {});
-                });
-
-            });
-
-    </script> -->
+    <script src="../static/js/move.js"></script>
 </html>

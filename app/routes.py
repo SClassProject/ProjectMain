@@ -1,5 +1,5 @@
 import base64
-# from app.character import updateGame, broadcastState
+import app.character
 import threading
 from flask import session, redirect, url_for, render_template, request, Blueprint
 from forms import RegistrationForm, roomRegistration, loginRegistration

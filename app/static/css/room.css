@@ -253,6 +253,7 @@ body {
   transform: rotateY(180deg);
   -webkit-transform: rotateY(180deg);
   -moz-transform: rotateY(180deg);
+  z-index: 99;
 } /* 스트림 박스 (화면공유 띄우는 용) */
 
 #stream__box .video__container {
@@ -260,6 +261,7 @@ body {
   border-radius: 0;
   height: 100% !important;
   width: 100% !important;
+  z-index: 99;
 } /* 화면 클릭 시 전체화면용 */
 
 #stream__box video {

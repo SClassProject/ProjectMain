@@ -14,6 +14,12 @@
         <script type="text/javascript" src="//code.jquery.com/jquery-1.4.2.min.js"></script>
         <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
         <script type="text/javascript" charset="utf-8">
+            // let userLabel = document.querySelector("#login_user_id");
+            // let user = userLabel.innerText;
+
+            // let img = new Image();
+            // img.src = `../static/img/phantoms/${user}.png`;
+            
             function Ball(id) {
                 this.id = id;
                 this.color = "#000000";
@@ -66,7 +72,7 @@
             var stateBuffer = [];
             
             $(document).ready(function(){
-                socket = io.connect('https://192.168.71.132:443/move');
+                socket = io.connect('https://192.168.71.128:443/move');
 
                 socket.on('connect', function() {
                     socket.emit('joined', {});
@@ -122,7 +128,7 @@
                 let inputs = "wsad";
                 
                 let anyInput = false;
-                let inputData = {};
+                let inputData = {'w': -1, 's' : -1, 'a' : -1, 'd' : -1};
                 
                 // Copy input map
                 for (let i = 0; i < inputs.length; ++i) {
@@ -268,7 +274,8 @@
                     ctx.fillStyle = ball.color;
                     
                     ctx.beginPath();
-                    ctx.arc(ball.x, ball.y, 16, 0, Math.PI * 2, false);
+                    // ctx.arc(ball.x, ball.y, 16, 0, Math.PI * 2, false);
+                    ctx.drawImage(img, ball.x, ball.y)
                     ctx.closePath();
                     ctx.fill();
                 }
