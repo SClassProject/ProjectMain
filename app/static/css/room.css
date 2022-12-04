@@ -114,8 +114,9 @@ body {
   display: block;
   height: 16px;
   width: 16px;
-  /* border-radius: 50%; */
-  background-image: url("../img/hand.png");
+  border-radius: 50%;
+  background-color: #746e16;
+  /* background-image: url("../img/hand.png"); */
 }
 
 .member_name {

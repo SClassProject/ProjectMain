@@ -1,6 +1,9 @@
 const APP_ID = "ce37f565cc404ece8eacf7a76ba3e80b"  // Agora - Livestream
 
-let uid = sessionStorage.getItem('uid')
+const userId = document.getElementById("login_user_id");
+let uid = userId.innerText;
+
+// let uid = sessionStorage.getItem('u_id')
 if(!uid) {
     uid = String(Math.floor(Math.random() * 10000))
     sessionStorage.setItem('uid', uid)
