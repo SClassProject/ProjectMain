@@ -56,7 +56,7 @@
         var stateBuffer = [];
         
         $(document).ready(function(){
-            socket = io.connect('https://192.168.71.128:443/move');
+            socket = io.connect('https://' + document.domain + ':443/move');
     
             socket.on('connect', function() {
                 socket.emit('joined', {});
