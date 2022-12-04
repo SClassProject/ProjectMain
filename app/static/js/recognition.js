@@ -1,6 +1,6 @@
-const sio = io();
-const userId = document.getElementById("login_user_id");
-let id = userId.innerText;
+var sio = io();
+const user_Id = document.getElementById("login_user_id");
+let id = user_Id.innerText;
 
 // 1928030:attend
 sio.on("onalert", (id) => {
