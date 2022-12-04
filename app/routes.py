@@ -1,4 +1,6 @@
 import base64
+# from app.character import updateGame, broadcastState
+import threading
 from flask import session, redirect, url_for, render_template, request, Blueprint
 from forms import RegistrationForm, roomRegistration, loginRegistration
 from database import mysql
@@ -208,7 +210,13 @@ def room(room_id):
 
 @bp.route('/move')
 def move():
-    return render_template("move.html")
+    u_id = session['u_id']
+    u_id = str(u_id)
+    room_id = session['room_id']
+    room_id = str(room_id)
+    # t1 = threading.Thread(target=updateGame, args=())
+    # t2 = threading.Thread(target=broadcastState, args=())
+    return render_template("move.html", id=u_id, room=room_id)
 
 @bp.route('/quiz_stu')
 def quiz_stu():

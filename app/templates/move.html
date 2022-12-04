@@ -11,17 +11,15 @@
                 border: 2px solid #000;
             }
         </style>
-        <!-- <script src="/socket.io/socket.io.js"></script> -->
         <script type="text/javascript" src="//code.jquery.com/jquery-1.4.2.min.js"></script>
         <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
         <script type="text/javascript" charset="utf-8">
             function Ball(id) {
                 this.id = id;
-                this.color = "#888888";
+                this.color = "#000000";
                 this.x = 0;
                 this.y = 0;
             }
-            
             
             var balls = [];
             var ballMap = {};
@@ -67,44 +65,52 @@
             var lastStateNum = 0;
             var stateBuffer = [];
             
-            socket.on('user_id', function(data) {
-                myId = data;
-            });
-            
-            socket.on('join_user', function(data) {
-                joinUser(data.id, data.color, data.x, data.y);
-            });
-            
-            socket.on('leave_user', function(data) {
-                leaveUser(data);
-            });
-            
-            socket.on('update_state', function(data) {
-                let stateNum = data.state_num;
+            $(document).ready(function(){
+                socket = io.connect('https://192.168.71.132:443/move');
+
+                socket.on('connect', function() {
+                    socket.emit('joined', {});
+                })
+
+                socket.on('user_id', function(data) {
+                    myId = data;
+                });
                 
-                if (stateNum > lastStateNum) {
-                    lastStateNum = stateNum;
+                socket.on('join_user', function(data) {
+                    joinUser(data.id, data.color, data.x, data.y);
+                });
+                
+                socket.on('leave_user', function(data) {
+                    leaveUser(data);
+                });
+                
+                socket.on('update_state', function(data) {
+                    let stateNum = data.state_num;
                     
-                    // Store server states if valid.
-                    let time = new Date().getTime();
-                    if (stateBuffer.length == 0 || stateBuffer[stateBuffer.length - 1][1] < time) {
-                        stateBuffer.push([data, time]);
-                        if (stateBuffer.length > 256) {
-                            stateBuffer.shift();
+                    if (stateNum > lastStateNum) {
+                        lastStateNum = stateNum;
+                        
+                        // Store server states if valid.
+                        let time = new Date().getTime();
+                        if (stateBuffer.length == 0 || stateBuffer[stateBuffer.length - 1][1] < time) {
+                            stateBuffer.push([data, time]);
+                            if (stateBuffer.length > 256) {
+                                stateBuffer.shift();
+                            }
+                        }
+                        else if (stateBuffer.length > 0) {
+                            stateBuffer[stateBuffer.length - 1] = [data, time];
+                        }
+                        
+                        // Update my state if last input state
+                        if (myId) {
+                            let myBall = data[myId];
+                            if (myBall && myBall.last_input_num >= lastInputNum) {
+                                updateState(myId, myBall.x, myBall.y);
+                            }
                         }
                     }
-                    else if (stateBuffer.length > 0) {
-                        stateBuffer[stateBuffer.length - 1] = [data, time];
-                    }
-                    
-                    // Update my state if last input state
-                    if (myId) {
-                        let myBall = data[myId];
-                        if (myBall && myBall.last_input_num >= lastInputNum) {
-                            updateState(myId, myBall.x, myBall.y);
-                        }
-                    }
-                }
+                });
             });
             
             
@@ -306,5 +312,5 @@
             Move : W, S, A, D
         </p>
     </body>
-    <script type="text/javascript" src="../static/js/index.js"></script>
+    
 </html>

@@ -1,12 +1,16 @@
-from multiprocessing.dummy import JoinableQueue
+import random
+import threading
+from time import time
 from flask import session
 from flask_socketio import Namespace, SocketIO, emit, join_room, leave_room, close_room, rooms, disconnect
-import random
+from app import socketio
 
 def getRandomColor() :
     letters = '0123456789ABCDEF'
     color = '#'
-    color += [random.choice(letters) for i in range(6)]
+    for i in range(6) :
+        color += random.choice(letters)
+    return color
 
 class InputData :
     def __init__(self, num) :
@@ -17,17 +21,14 @@ class InputData :
         self.d = False
 
 class Ball :
-    def __init__(self, socket) :
-        self.socket = socket
+    def __init__(self, id) :
+        self.id = id
         self.x = 0
         self.y = 0
         self.color = getRandomColor()
         self.inputMap = {}
         self.inputBuffer = []
         self.lastInputNum = 0
-
-    def get_id(self) :
-        return self.socket.id
 
     def checkKey(self, key) :
         return self.inputMap[key]
@@ -65,40 +66,104 @@ class Ball :
             vx = 4
 
         self.x += vx * timeRate
-        self.y = vy * timeRate
+        self.y += vy * timeRate
         
 balls = []
 ballMap = {}
 
-def joinGame(socket) :
-    ball = Ball(socket)
+def joinGame(id) :
+    ball = Ball(id)
 
     balls.append(ball)
-    ballMap[socket.id] = ball
+    ballMap[ball.id] = ball
 
     return ball
 
-def leaveGame(socket) :
+def leaveGame(id) :
     for i in range(len(balls)) :
-        if balls[i].id == socket.id :
+        if balls[i].id == id :
             balls.splice(i, 1)
             break
 
-    del ballMap[socket.id]
+    del ballMap[id]
+
+def onInput(id, data) :
+    ball = ballMap[id]
+
+    inputData = InputData(data.num)
+
+    inputData.w = data.w | False
+    inputData.s = data.s | False
+    inputData.a = data.a | False
+    inputData.d = data.d | False
+    
+    ball.pushInput(inputData)
+
 
 def socketio_character(socketio):
-    @socketio.on('connection', namespace='/room')
+    @socketio.on('joined', namespace='/move')
     def connection(message) :
-        newBall = joinGame(socketio)
+        global balls
+        newBall = joinGame(session.get('u_id'))
+
+        join_room(session.get('room'))
+
+        emit('user_id', newBall.id)
+        print(newBall.color)
+
+        for i in range(len(balls)) :
+            ball = balls[i]
+
+            emit('join_user', {'id' : ball.id, 'x' : ball.x, 'y' : ball.y, 'color' : ball.color}, broadcast=True, include_self=False, namespace='/move')
+        emit('join_user', {'id' : ball.id, 'x' : ball.x, 'y' : ball.y, 'color' : ball.color}, namespace='/move')
+
+
+    @socketio.on('disconnect', namespace='/move')
+    def disconnect(message) :
+        leaveGame(session.get('u_id'))
+
+    @socketio.on('input', namespace='/move')
+    def on_input(message) :
+        onInput(session.get('u_id'), message)
+
+    prevUpdateTime = time()
+    stateNum = 0
+
+    def updateGame() :
+        global prevUpdateTime
+        currentUpdateTime = time()
+        deltaTime = currentUpdateTime - prevUpdateTime
+        prevUpdateTime = currentUpdateTime
+
+        timeRate = deltaTime / (1000 / 60)
+
+        for i in range(len(balls)) :
+            ball = balls[i]
+            
+            ball.applyInputs()
+
+            ball.handleInput(timeRate)
+
+        updateGame()
+
+    def broadcastState() :
+        global stateNum
+        stateNum += 1
+
+        data = {}
+
+        data['state_num'] = stateNum
         
-        
+        for i in range(len(balls)) :
+            ball = balls[i]
+
+            data[ball.id] = {'last_input_num': ball.lastInputNum, 'x': ball.x, 'y': ball.y}
+
+        emit('update_state', data, broadcast=True, include_self=True, namespace='/move')
+
+        broadcastState()
 
 
-# def socketio_init(socketio):
-#     @socketio.on('join', namespace='/room')
-#     def join(message):
-#         id = session.get('u_id')
-#         print(id + "님이 입장하셨습니다.")
+# t1 = threading.Thread(target=updateGame, args=())
+# t2 = threading.Thread(target=broadcastState, args=())
 
-#     @socketio.on('move', namespace='/room')
-#     def move(message):
